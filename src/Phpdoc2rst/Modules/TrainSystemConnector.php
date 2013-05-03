@@ -28,7 +28,7 @@ class TrainSystemConnector
         {
             $exceptions[] = new ExceptionElement($error->getId(), $error->getDescriptionEn());
         }
-print_r([$exceptions]);die;
+
         return $exceptions;
     }
 }
