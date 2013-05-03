@@ -1,0 +1,16 @@
+====
+{{ class.getName() }}
+====
+
+{{ class.getDescription }}
+
+{% for method in class.getMethods() %}
+
+.. _{{ method.getName() }}:
+{{ method.getName() }}
+----
+Method: {{ method.getHttpMethod() }}
+
+{{ method.getDescription()|raw }}
+
+{% endfor %}

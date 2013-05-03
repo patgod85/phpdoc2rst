@@ -1,0 +1,11 @@
+====
+Exceptions in system:
+====
+
+{% for exception in exceptions -%}
+{% if exception.getCode() != 0 %}
+    {{- exception.getCode() }}. {{ exception.getDescription() }}
+
+{% endif %}
+{% endfor %}
+

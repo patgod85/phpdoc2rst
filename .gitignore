@@ -1,0 +1,7 @@
+*.log
+/static
+/.idea/*
+/cache/*
+/vendor/*
+/tmp/*
+composer.lock

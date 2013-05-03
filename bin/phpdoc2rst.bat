@@ -1,0 +1,1 @@
+php "../phpdoc2rst.php" %*
