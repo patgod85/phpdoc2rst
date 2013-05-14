@@ -16,7 +16,7 @@ call phpdoc2rst.bat process Art\Models\Reports %INPUT_FOLDER%/src/Art/Models/Rep
 
 call phpdoc2rst.bat process Art\Models\XmlGateway\Input %INPUT_FOLDER%/src/Art/Models/XmlGateway/Input -o %OUTPUT_FOLDER%/models/request/
 
-call phpdoc2rst.bat process Art\Exceptions\XmlGateway %INPUT_FOLDER%/src/Art/Exceptions/XmlGateway -o %OUTPUT_FOLDER%/ -e exceptions
+call phpdoc2rst.bat process Art\Exceptions\XmlGateway %INPUT_FOLDER%/src/Art/Exceptions/XmlGateway -o %OUTPUT_FOLDER%/articles/ -e exceptions
 
 
 del "%OUTPUT_FOLDER%\models\response\TrainRequest.rst"
@@ -43,7 +43,7 @@ copy /Y "../tmp/Art/Models/Reports/Tickets" "%OUTPUT_FOLDER%/models/reports/tick
 
 copy /Y "../tmp/Art/Models/XmlGateway/Input" "%OUTPUT_FOLDER%/models/request"
 
-copy "..\tmp\errors.rst" "%OUTPUT_FOLDER%"
+copy "..\tmp\errors.rst" "%OUTPUT_FOLDER%"/articles
 
 
 :jp1
