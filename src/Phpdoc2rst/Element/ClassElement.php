@@ -119,9 +119,23 @@ class ClassElement extends Element
 
     public function getProperties()
     {
-        return array_map(function ($v) {
-            return new PropertyElement($v);
-        }, $this->reflection->getProperties());
+        $propertiesReflections = $this->reflection->getProperties();
+
+        $properties = array_map(
+            function ($reflection){
+                return new PropertyElement($reflection);
+            },
+            $propertiesReflections
+        );
+
+        $properties = array_filter(
+            $properties,
+            function (PropertyElement $property){
+                return !$property->isExcluded();
+            }
+        );
+
+        return $properties;
     }
 
     public function getMethods()

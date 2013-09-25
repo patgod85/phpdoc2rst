@@ -67,4 +67,19 @@ class PropertyElement extends Element
 
         return $type;
     }
+
+    public function isExcluded()
+    {
+        $serializer = $this->getParser()->getAnnotationsByName('Serializer');
+
+        foreach($serializer as $annotation)
+        {
+            if(strpos($annotation, 'Exclude') !== false)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
