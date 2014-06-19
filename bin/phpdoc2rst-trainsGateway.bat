@@ -1,4 +1,4 @@
-set INPUT_FOLDER=c:\repos\git\trains
+set INPUT_FOLDER=c:\repos\git\art
 set OUTPUT_FOLDER=c:\repos\git\train-tickets-gateway-doc
 
 
@@ -8,15 +8,15 @@ set OUTPUT_FOLDER=c:\repos\git\train-tickets-gateway-doc
 
 
 
-call phpdoc2rst.bat process Art\Controllers\trains\xml %INPUT_FOLDER%/src/Art/Controllers/trains/xml -o %OUTPUT_FOLDER%/controllers/ -e methods
+call phpdoc2rst.bat process Art\Controllers\xml %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Controllers/xml -o %OUTPUT_FOLDER%/controllers/ -e methods
 
-call phpdoc2rst.bat process Art\Models\XmlGateway %INPUT_FOLDER%/src/Art/Models/XmlGateway -o %OUTPUT_FOLDER%/models/response/ -x Art\Models\XmlGateway\Input
+call phpdoc2rst.bat process Art\Models\XmlGateway %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Models/XmlGateway -o %OUTPUT_FOLDER%/models/response/ -x Art\Models\XmlGateway\Input
 
-call phpdoc2rst.bat process Art\Models\Reports %INPUT_FOLDER%/src/Art/Models/Reports -o %OUTPUT_FOLDER%/models/reports/tickets/
+call phpdoc2rst.bat process Art\Models\Reports %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Models/Reports -o %OUTPUT_FOLDER%/models/reports/tickets/
 
-call phpdoc2rst.bat process Art\Models\XmlGateway\Input %INPUT_FOLDER%/src/Art/Models/XmlGateway/Input -o %OUTPUT_FOLDER%/models/request/
+call phpdoc2rst.bat process Art\Models\XmlGateway\Input %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Models/XmlGateway/Input -o %OUTPUT_FOLDER%/models/request/
 
-call phpdoc2rst.bat process Art\Exceptions\XmlGateway %INPUT_FOLDER%/src/Art/Exceptions/XmlGateway -o %OUTPUT_FOLDER%/articles/ -e exceptions
+call phpdoc2rst.bat process Art\Exceptions\XmlGateway %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Exceptions/XmlGateway -o %OUTPUT_FOLDER%/articles/ -e exceptions
 
 
 del "%OUTPUT_FOLDER%\models\response\TrainRequest.rst"
@@ -35,7 +35,7 @@ del "%OUTPUT_FOLDER%\controllers\YouAreNotAuthenticatedController.rst"
 goto jp1
 
 
-copy /Y "../tmp/Art/Controllers/trains/xml" "%OUTPUT_FOLDER%/controllers"
+copy /Y "../tmp/Art/Controllers/xml" "%OUTPUT_FOLDER%/controllers"
 
 copy /Y "../tmp/Art/Models/XmlGateway" "%OUTPUT_FOLDER%/models/response"
 
