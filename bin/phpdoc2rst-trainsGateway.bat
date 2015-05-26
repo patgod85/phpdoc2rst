@@ -8,15 +8,15 @@ set OUTPUT_FOLDER=c:\repos\git\train-tickets-gateway-doc
 
 
 
-call phpdoc2rst.bat process Art\Controllers\xml %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Controllers/xml -o %OUTPUT_FOLDER%/controllers/ -e methods
+call phpdoc2rst.bat process Art\Controllers\xml %INPUT_FOLDER%/src/Art/Controllers/xml -o %OUTPUT_FOLDER%/controllers/ -e methods
 
-call phpdoc2rst.bat process Art\Models\XmlGateway %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Models/XmlGateway -o %OUTPUT_FOLDER%/models/response/ -x Art\Models\XmlGateway\Input
+call phpdoc2rst.bat process Art\Models\XmlGateway %INPUT_FOLDER%/src/Art/Models/XmlGateway -o %OUTPUT_FOLDER%/models/response/ -x Art\Models\XmlGateway\Input
 
-call phpdoc2rst.bat process Art\Models\Reports %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Models/Reports -o %OUTPUT_FOLDER%/models/reports/tickets/
+call phpdoc2rst.bat process Art\Models\Reports %INPUT_FOLDER%/src/Art/Models/Reports -o %OUTPUT_FOLDER%/models/reports/tickets/
 
-call phpdoc2rst.bat process Art\Models\XmlGateway\Input %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Models/XmlGateway/Input -o %OUTPUT_FOLDER%/models/request/
+call phpdoc2rst.bat process Art\Models\XmlGateway\Input %INPUT_FOLDER%/src/Art/Models/XmlGateway/Input -o %OUTPUT_FOLDER%/models/request/
 
-call phpdoc2rst.bat process Art\Exceptions\XmlGateway %INPUT_FOLDER%/src/Rr/GeneralBundle/src/Art/Exceptions/XmlGateway -o %OUTPUT_FOLDER%/articles/ -e exceptions
+call phpdoc2rst.bat process Art\Exceptions\XmlGateway %INPUT_FOLDER%/src/Art/Exceptions/XmlGateway -o %OUTPUT_FOLDER%/articles/ -e exceptions
 
 
 del "%OUTPUT_FOLDER%\models\response\TrainRequest.rst"
