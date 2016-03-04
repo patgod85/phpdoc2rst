@@ -114,5 +114,6 @@ class Process extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         new ProcessController($input, $output);
+        return 1;
     }
 }

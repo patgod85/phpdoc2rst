@@ -1,7 +1,7 @@
 {
     "name": "patgod85/phpdoc2rst",
     "type": "library",
-    "description": "PHPDoc to Sphinx phpdomain tool",
+    "description": "PHPDoc to RST",
     "keywords": ["documentation", "phpdoc", "rst", "sphinx"],
     "authors": [
         {
@@ -15,7 +15,7 @@
         "symfony/process": ">=2.0.10",
         "andrewsville/php-token-reflection": ">=1.3.0",
         "phpunit/phpunit": ">=1.6",
-        "doctrine/inflector": "1.0.*@dev",
+        "doctrine/inflector": "*",
         "twig/twig": "1.*"
     }
 }

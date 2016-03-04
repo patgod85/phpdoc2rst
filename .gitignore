@@ -4,4 +4,4 @@
 /cache/*
 /vendor/*
 /tmp/*
-composer.lock
+vendor-**.zip

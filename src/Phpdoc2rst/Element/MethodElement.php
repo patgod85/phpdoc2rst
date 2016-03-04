@@ -206,7 +206,10 @@ class MethodElement extends Element
         $string .= "Method: $httpMethod \n\n";
 
         $parser = $this->getParser();
+print_r([
+    $parser->getDescription()
 
+]);
         if ($description = $parser->getDescription())
         {
             $string .= $description . "\n\n";
