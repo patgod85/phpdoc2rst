@@ -4,7 +4,7 @@ namespace Patgod85\Phpdoc2rst\Command\Process\Services;
 
 use Patgod85\Phpdoc2rst\Command\Process\Element\ExceptionFromDbElement;
 
-require_once __DIR__.'/../../../../trains/app/Autoload.php';
+//require_once __DIR__.'/../../../../trains/app/Autoload.php';
 
 class TrainSystemConnector
 {

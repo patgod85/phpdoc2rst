@@ -1,6 +1,6 @@
 {
     "name": "patgod85/phpdoc2rst",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "type": "symfony-bundle",
     "description": "PHPDoc to RST",
     "keywords": ["documentation", "phpdoc", "rst"],
@@ -14,15 +14,17 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.2",
-        "symfony/console": ">=2.0.10",
-        "symfony/process": ">=2.0.10",
         "andrewsville/php-token-reflection": "dev-master",
-        "phpunit/phpunit": ">=1.6",
-        "doctrine/inflector": "*",
         "doctrine/annotations": "*",
+        "doctrine/inflector": "*",
+        "phpunit/phpunit": ">=1.6",
+        "symfony/config": ">2.5",
+        "symfony/console": ">=2.0.10",
+        "symfony/http-kernel": ">2.5",
+        "symfony/dependency-injection": ">2.5",
+        "symfony/process": ">=2.0.10",
         "twig/twig": "1.*"
     },
-    "bin": ["bin/phpdoc2rst.bat", "bin/phpdoc2rst-trainsEmail.bat", "bin/phpdoc2rst-trainsGateway.bat", "bin/phpdoc2rst-trainsGateway-v2.bat"],
     "autoload": {
         "psr-0": { "Patgod85\\Phpdoc2rst": "" }
     },

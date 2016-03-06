@@ -39,7 +39,7 @@ abstract class DefaultController
         $this->inputFolder = $input->getArgument('path');
         $this->outputFolder  = realpath($input->getOption('output'));
         $this->exclude = $input->getOption('exclude');
-        $this->processingElements = $input->getOption('elements');
+        $this->processingElements = $input->getOption('target');
 
         $this->templateManager = new TemplateManager();
 

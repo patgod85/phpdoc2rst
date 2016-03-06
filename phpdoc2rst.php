@@ -6,10 +6,10 @@ $loader = include __DIR__ . '/vendor/autoload.php';
 $loader->add('Phpdoc2rst', __DIR__.'/src');
 
 
-use Patgod85\Phpdoc2rst\Command\Process;
+use Patgod85\Phpdoc2rst\Command\ProcessCommand;
 use Symfony\Component\Console\Application;
 
 
 $application = new Application('phpdoc2rst', '1.0.0-alpha');
-$application->add(new Process());
+$application->add(new ProcessCommand());
 $application->run();
