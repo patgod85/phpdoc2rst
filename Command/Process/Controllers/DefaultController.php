@@ -5,6 +5,7 @@ namespace Patgod85\Phpdoc2rst\Command\Process\Controllers;
 use Patgod85\Phpdoc2rst\Command\Process\Element\NamespaceElement;
 use Patgod85\Phpdoc2rst\Command\Process\Services\NamespacesService;
 use Patgod85\Phpdoc2rst\Command\Process\TemplateManager;
+use Patgod85\Phpdoc2rst\Service\TrainSystemConnector;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -31,7 +32,10 @@ abstract class DefaultController
     /** @var TemplateManager */
     protected $templateManager;
 
-    function __construct(InputInterface $input, OutputInterface $output)
+    /** @var  TrainSystemConnector */
+    protected $trainSystemConnector;
+
+    function __construct(InputInterface $input, OutputInterface $output, TrainSystemConnector $trainSystemConnector)
     {
         $this->output = $output;
 
@@ -42,6 +46,8 @@ abstract class DefaultController
         $this->processingElements = $input->getOption('target');
 
         $this->templateManager = new TemplateManager();
+
+        $this->trainSystemConnector = $trainSystemConnector;
 
         $this->action();
     }

@@ -1,0 +1,4 @@
+services:
+    phpdoc2rst_train_system_connector:
+        class: Patgod85\Phpdoc2rst\Service\TrainSystemConnector
+        arguments: ["@=service(parameter('patgod85_phpdoc2rst.errors_provider'))"]

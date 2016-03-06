@@ -2,19 +2,15 @@
 
 namespace Patgod85\Phpdoc2rst\Command\Process\Controllers;
 
-
 use Patgod85\Phpdoc2rst\Command\Process\Element\NamespaceElement;
-use Patgod85\Phpdoc2rst\Command\Process\Services\TrainSystemConnector;
 
 class ProcessController extends DefaultController
 {
     protected function processDescriptionsOfExceptions(NamespaceElement $namespace)
     {
-        $trainsSystemConnector = new TrainSystemConnector();
-
         $exceptions = array_merge(
             $namespace->getExceptions(),
-            $trainsSystemConnector->getAdditionalExceptions()
+            $this->trainSystemConnector->getAdditionalExceptions()
         );
 
         $template = $this->templateManager->render(

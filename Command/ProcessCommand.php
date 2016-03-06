@@ -3,16 +3,17 @@
 namespace Patgod85\Phpdoc2rst\Command;
 
 use Patgod85\Phpdoc2rst\Command\Process\Controllers\ProcessController;
+use Patgod85\Phpdoc2rst\Service\TrainSystemConnector;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Question\Question;
 use TokenReflection\Broker;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use \InvalidArgumentException;
 
-class ProcessCommand extends Command
+class ProcessCommand extends ContainerAwareCommand
 {
     /**
      * @see Symfony\Component\Console\Command.Command::configure()
@@ -125,7 +126,9 @@ class ProcessCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        new ProcessController($input, $output);
-        return 1;
+        /** @var TrainSystemConnector $trainSystemConnector */
+        $trainSystemConnector = $this->getContainer()->get('phpdoc2rst_train_system_connector');
+
+        new ProcessController($input, $output, $trainSystemConnector);
     }
 }
