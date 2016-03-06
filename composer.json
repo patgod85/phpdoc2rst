@@ -1,13 +1,14 @@
 {
     "name": "patgod85/phpdoc2rst",
-    "version": "0.0.2",
-    "type": "library",
+    "version": "0.0.3",
+    "type": "symfony-bundle",
     "description": "PHPDoc to RST",
-    "keywords": ["documentation", "phpdoc", "rst", "sphinx"],
+    "keywords": ["documentation", "phpdoc", "rst"],
+    "license" : "MIT",
     "authors": [
         {
             "name":     "Victor",
-            "email":    "victor@realrussia.co.uk"
+            "email":    "patgod85@gmail.com"
         }
     ],
     "minimum-stability": "stable",
@@ -23,11 +24,10 @@
     },
     "bin": ["bin/phpdoc2rst.bat", "bin/phpdoc2rst-trainsEmail.bat", "bin/phpdoc2rst-trainsGateway.bat", "bin/phpdoc2rst-trainsGateway-v2.bat"],
     "autoload": {
-        "psr-0": { "Phpdoc2rst": "src/" }
+        "psr-0": { "Patgod85\\Phpdoc2rst": "" }
     },
-
     "autoload-dev": {
-        "psr-0": { "input": "src/Phpdoc2rst/Tests" }
-    }
-
+        "psr-0": { "input": "./Tests" }
+    },
+    "target-dir" : "Patgod85/Phpdoc2rst"
 }

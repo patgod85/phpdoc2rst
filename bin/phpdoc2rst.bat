@@ -1,1 +1,1 @@
-php "../phpdoc2rst.php" %*
+php "%~dp0/../phpdoc2rst.php" %*

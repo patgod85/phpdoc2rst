@@ -11,7 +11,7 @@
     processIsolation            = "false"
     stopOnFailure               = "true"
     syntaxCheck                 = "false"
-    bootstrap                   = "src/Phpdoc2rst/Tests/bootstrap.php"
+    bootstrap                   = "Tests/bootstrap.php"
     verbose                     = "false">
 
     <php>
