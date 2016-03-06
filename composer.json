@@ -1,6 +1,6 @@
 {
     "name": "patgod85/phpdoc2rst",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "library",
     "description": "PHPDoc to RST",
     "keywords": ["documentation", "phpdoc", "rst", "sphinx"],
@@ -18,6 +18,16 @@
         "andrewsville/php-token-reflection": "dev-master",
         "phpunit/phpunit": ">=1.6",
         "doctrine/inflector": "*",
+        "doctrine/annotations": "*",
         "twig/twig": "1.*"
+    },
+    "bin": ["bin/phpdoc2rst.bat", "bin/phpdoc2rst-trainsEmail.bat", "bin/phpdoc2rst-trainsGateway.bat", "bin/phpdoc2rst-trainsGateway-v2.bat"],
+    "autoload": {
+        "psr-0": { "Phpdoc2rst": "src/" }
+    },
+
+    "autoload-dev": {
+        "psr-0": { "input": "src/Phpdoc2rst/Tests" }
     }
+
 }

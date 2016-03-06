@@ -10,6 +10,7 @@ use TokenReflection\IReflection;
  */
 abstract class Element
 {
+    /** @var IReflection  */
     protected $reflection;
 
     /**
@@ -34,7 +35,9 @@ abstract class Element
      * Indents the given lines
      *
      * @param string $output
-     * @param int $level
+     * @param int $spaces
+     * @param bool $rewrap
+     * @return mixed|string
      */
     protected function indent($output, $spaces = 3, $rewrap = false)
     {
@@ -46,7 +49,6 @@ abstract class Element
         $spaces = str_pad(' ', $spaces);
 
         if ($rewrap) {
-            $existing_indent = '';
             if (preg_match('/^( +)/', $output, $matches)) {
                 $spaces .= $matches[1];
             }

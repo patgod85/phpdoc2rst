@@ -140,9 +140,20 @@ class ClassElement extends Element
 
     public function getMethods()
     {
-        return array_map(function ($v) {
-            return new MethodElement($v);
-        }, $this->reflection->getOwnMethods());
+        $methods = array_map(
+            function ($v)
+            {
+                return new MethodElement($v);
+            },
+            $this->reflection->getOwnMethods()
+        );
+
+        return array_filter(
+            $methods,
+            function(MethodElement $element){
+                return !$element->isExcluded();
+            }
+        );
     }
 
     public function getNamespaceElement()

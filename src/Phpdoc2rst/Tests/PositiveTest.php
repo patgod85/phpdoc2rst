@@ -2,6 +2,9 @@
 
 namespace Phpdoc2rst\Tests;
 
+
+use Phpdoc2rst\Annotation\Exclude;
+use Phpdoc2rst\Annotation\HttpMethod;
 use Phpdoc2rst\Process;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -10,23 +13,26 @@ class PositiveTest extends \PHPUnit_Framework_TestCase
 {
     public function testNameIsOutput()
     {
+        new Exclude();
+        new HttpMethod();
+
         $application = new Application();
         $application->add(new Process());
 
         $command = $application->find('process');
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
-            'namespace' => 'Rr\GatewayBundle\Controller',
+            'namespace' => 'input\Controller',
             'path' => './input/Controllers',
             '-o' => './output/Controllers',
             '-e' => 'methods',
         ));
 
         $expected = <<<eot
-Processing code from namespace Rr\GatewayBundle\Controller
+Processing code from namespace input\Controller
 Processing files from ./input/Controllers
 Outputting to C:\\repos\git\phpdoc2rst\src\Phpdoc2rst\Tests\output\Controllers
-Processing Rr\GatewayBundle\Controller
+Processing input\Controllers
 
 eot;
 

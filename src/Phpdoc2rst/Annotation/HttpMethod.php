@@ -4,8 +4,9 @@ namespace Phpdoc2rst\Annotation;
 
 /**
  * @Annotation
- * @Target("ALL")
+ * @Target("METHOD")
  */
-class Exclude
+class HttpMethod
 {
+    public $value;
 }

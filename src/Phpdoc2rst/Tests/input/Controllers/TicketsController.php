@@ -1,11 +1,8 @@
 <?php
 
-namespace Rr\GatewayBundle\Controller;
+namespace input\Controllers;
 
-use Rr\GatewayBundle\Service\App\Tickets as appServices;
-use Rr\GatewayBundle\Service\App\GatewayApp;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Phpdoc2rst\Annotation as P2R;
 
 /**
  * Path:
@@ -21,6 +18,7 @@ class TicketsController
     /**
      * @param $method
      * @return array
+     * @P2R\Exclude
      */
     protected function getAppService($method)
     {
@@ -37,16 +35,15 @@ class TicketsController
      *
      * ``/tickets/bookPackage``
      *
-     * Method: POST
      * Result: `BookPackageResult <../models/response/BookPackageResult.rst>`_
-     * @param appServices\BookPackage $appService
-     * @param Request $request
+     * @P2R\HttpMethod("POST")
+     * @param int $appService
+     * @param int $request
      * @return string
      */
-    protected function bookPackage(appServices\BookPackage $appService, Request $request)
+    protected function bookPackage($appService, $request)
     {
         return $appService->execute($request->get('params'));
     }
 }
 
-$a = new TicketsController();

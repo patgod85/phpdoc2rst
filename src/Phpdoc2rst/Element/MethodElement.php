@@ -2,8 +2,12 @@
 
 namespace Phpdoc2rst\Element;
 
-use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Phpdoc2rst\Annotation\Exclude;
+use Phpdoc2rst\Annotation\HttpMethod;
+use TokenReflection\Exception\RuntimeException;
 use TokenReflection\IReflectionMethod;
+use TokenReflection\IReflectionParameter;
 
 /**
  * Method element
@@ -13,6 +17,12 @@ class MethodElement extends Element
     private $name;
 
     private $httpMethod;
+
+    /** @var  IReflectionMethod */
+    protected $reflection;
+
+    /** @var array  */
+    protected $doctrineAnnotations;
 
     /**
      * Constructor
@@ -24,6 +34,9 @@ class MethodElement extends Element
         parent::__construct($method);
 
         $methodName = $this->reflection->getName();
+
+        $reader = new AnnotationReader();
+        $this->doctrineAnnotations = $reader->getMethodAnnotations(new \ReflectionMethod($this->reflection->getDeclaringClassName(), $methodName));
 
         list($this->name, $this->httpMethod) = $this->processMethodName($methodName);
     }
@@ -39,6 +52,8 @@ class MethodElement extends Element
         $params = array();
 
         $parameters = $this->reflection->getParameters();
+
+        /** @var IReflectionParameter $parameter */
         foreach ($parameters as $parameter) {
             $params[$parameter->getName()] = array(
                 'name'      => $parameter->getName(),
@@ -50,7 +65,7 @@ class MethodElement extends Element
             if ($parameter->isDefaultValueAvailable()) {
                 try {
                     $params[$parameter->getName()]['default'] = trim($parameter->getDefaultValueDefinition());
-                } catch (\Exception\RuntimeException $e) {
+                } catch (RuntimeException $e) {
                     // Just don't provide a default
                 }
             }
@@ -189,6 +204,16 @@ class MethodElement extends Element
 
         $name = str_replace(['_POST', '_GET'], ['', ''], $name);
 
+
+        foreach($this->doctrineAnnotations as $a)
+        {
+            if($a instanceof HttpMethod)
+            {
+                $httpMethod = $a->value;
+                break;
+            }
+        }
+
         return [$name, $httpMethod];
     }
 
@@ -206,10 +231,7 @@ class MethodElement extends Element
         $string .= "Method: $httpMethod \n\n";
 
         $parser = $this->getParser();
-print_r([
-    $parser->getDescription()
 
-]);
         if ($description = $parser->getDescription())
         {
             $string .= $description . "\n\n";
@@ -235,5 +257,20 @@ print_r([
         return $this->name;
     }
 
+    public function isExcluded()
+    {
+        $result = false;
+
+        foreach($this->doctrineAnnotations as $a)
+        {
+            if($a instanceof Exclude)
+            {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
 
 }

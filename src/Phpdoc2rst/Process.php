@@ -3,11 +3,7 @@
 namespace Phpdoc2rst;
 
 use Phpdoc2rst\Controllers\ProcessController;
-use Phpdoc2rst\Element\NamespaceElement;
-
-use Phpdoc2rst\Element\Element;
 use TokenReflection\Broker;
-use TokenReflection\Broker\Backend\Memory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -87,7 +83,7 @@ class Process extends Command
         }
 
         if (!is_writable($out)) {
-            $o = $this->getHelper('dialog')->askAndValidate(
+            $this->getHelper('dialog')->askAndValidate(
                 $output,
                 '<question>Path to output built files: </question> [<comment>' . $out. '</comment>]',
                 function ($out) {

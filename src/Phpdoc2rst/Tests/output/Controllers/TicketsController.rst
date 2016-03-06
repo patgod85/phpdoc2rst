@@ -9,18 +9,10 @@ Path:
 Provides methods for booking, confirming, declining, cancelling and editing tickets, as well as changing the registration type.
 
 
-.. _getAppService:
-getAppService
-----
-Method: GET
-
-
-
-
 .. _bookPackage:
 bookPackage
 ----
-Method: GET
+Method: POST
 
 The method for booking of several request in one time
 
@@ -32,5 +24,5 @@ Example of request:
 
 ``/tickets/bookPackage``
 
-Method: POST Result: `BookPackageResult <../models/response/BookPackageResult.rst>`_
+Result: `BookPackageResult <../models/response/BookPackageResult.rst>`_
 
