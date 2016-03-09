@@ -35,12 +35,15 @@ class ProcessController extends DefaultController
     {
         foreach ($namespace->getClasses() as $class)
         {
-            $template = $this->templateManager->render(
-                $templateFileName,
-                ['class' => $class]
-            );
+            if(!$class->isExcluded())
+            {
+                $template = $this->templateManager->render(
+                    $templateFileName,
+                    ['class' => $class]
+                );
 
-            $this->putToFile($class->getName().'.rst', $template);
+                $this->putToFile($class->getName() . '.rst', $template);
+            }
         }
     }
 }

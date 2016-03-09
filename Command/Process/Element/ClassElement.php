@@ -2,7 +2,10 @@
 
 namespace Patgod85\Phpdoc2rst\Command\Process\Element;
 
+use Doctrine\Common\Annotations\AnnotationReader;
+use Patgod85\Phpdoc2rst\Annotation\Exclude;
 use Patgod85\Phpdoc2rst\Command\Process\CommentParser;
+use TokenReflection\IReflectionClass;
 use TokenReflection\ReflectionClass;
 
 
@@ -17,6 +20,18 @@ class ClassElement extends Element
     protected $reflection;
 
     private $elementsForOutput;
+
+    /** @var array  */
+    protected $doctrineAnnotations;
+
+    function __construct(IReflectionClass $reflection)
+    {
+        parent::__construct($reflection);
+
+        $reader = new AnnotationReader();
+        $this->doctrineAnnotations = $reader->getClassAnnotations(new \ReflectionClass($this->reflection->getName()));
+
+    }
 
     public function getPath()
     {
@@ -152,5 +167,21 @@ class ClassElement extends Element
     protected function getParser()
     {
         return new CommentParser($this->reflection->getDocComment());
+    }
+
+    public function isExcluded()
+    {
+        $result = false;
+
+        foreach($this->doctrineAnnotations as $a)
+        {
+            if($a instanceof Exclude)
+            {
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
     }
 }
