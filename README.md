@@ -21,7 +21,7 @@ The command generates rst-files for specified target (Controllers, Models of Exc
 php app/console phpdoc2rst:all
 ```
 
-**argumants:**
+**arguments:**
 
 1. namespace - The namespace to process;
 1. path - The path the namespace can be found in;
