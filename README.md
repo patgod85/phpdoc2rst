@@ -17,10 +17,6 @@ php app/console phpdoc2rst:process
 
 The command generates rst-files for specified target (Controllers, Models of Exceptions)
 
-```shell
-php app/console phpdoc2rst:all
-```
-
 **arguments:**
 
 1. namespace - The namespace to process;
@@ -33,6 +29,9 @@ php app/console phpdoc2rst:all
 - --exclude, -x - Semicolon separated namespaces to ignore;
 - --target - Which elements need to select. Default value 'properties'.
 
+```shell
+php app/console phpdoc2rst:all
+```
 
 The command is a runner of several phpdoc2rst:process that specified in config.yml of the project
 
