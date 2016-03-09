@@ -19,6 +19,7 @@ class Patgod85Phpdoc2rstExtension extends Extension
 
         $container->setParameter('patgod85_phpdoc2rst', $config);
         $container->setParameter('patgod85_phpdoc2rst.errors_provider', $config['errors_provider']);
+        $container->setParameter('patgod85_phpdoc2rst.tasks', $config['tasks']);
     }
     public function getAlias()
     {

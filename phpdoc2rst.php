@@ -10,6 +10,6 @@ use Patgod85\Phpdoc2rst\Command\ProcessCommand;
 use Symfony\Component\Console\Application;
 
 
-$application = new Application('phpdoc2rst', '1.0.0-alpha');
+$application = new Application('phpdoc2rst:process', '');
 $application->add(new ProcessCommand());
 $application->run();
