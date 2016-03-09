@@ -5,6 +5,7 @@ namespace Patgod85\Phpdoc2rst\Command\Process\Element;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Patgod85\Phpdoc2rst\Annotation\Exclude;
 use Patgod85\Phpdoc2rst\Annotation\HttpMethod;
+use Patgod85\Phpdoc2rst\Annotation\Result;
 use Patgod85\Phpdoc2rst\Command\Process\CommentParser;
 use TokenReflection\Exception\RuntimeException;
 use TokenReflection\IReflectionMethod;
@@ -25,6 +26,12 @@ class MethodElement extends Element
     /** @var array  */
     protected $doctrineAnnotations;
 
+    private $isExcluded = false;
+
+    /**
+     * @var string
+     */
+    private $result = '';
     /**
      * Constructor
      *
@@ -40,6 +47,8 @@ class MethodElement extends Element
         $this->doctrineAnnotations = $reader->getMethodAnnotations(new \ReflectionMethod($this->reflection->getDeclaringClassName(), $methodName));
 
         list($this->name, $this->httpMethod) = $this->processMethodName($methodName);
+
+        $this->processAnnotations();
     }
 
     /**
@@ -258,18 +267,28 @@ class MethodElement extends Element
 
     public function isExcluded()
     {
-        $result = false;
+        return $this->isExcluded;
+    }
 
+
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    private function processAnnotations()
+    {
         foreach($this->doctrineAnnotations as $a)
         {
             if($a instanceof Exclude)
             {
-                $result = true;
-                break;
+                $this->isExcluded = true;
+            }
+            elseif($a instanceof Result)
+            {
+                $this->result = $a->value;
             }
         }
-
-        return $result;
     }
 
     protected function getParser()

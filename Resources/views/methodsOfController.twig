@@ -13,4 +13,8 @@ Method: {{ method.getHttpMethod() }}
 
 {{ method.getDescription()|raw }}
 
+{% if method.result != '' %}
+Result: {{ method.result|raw }}
+{% endif %}
+
 {% endfor %}

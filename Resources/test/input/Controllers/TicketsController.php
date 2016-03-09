@@ -35,7 +35,7 @@ class TicketsController
      *
      * ``/tickets/bookPackage``
      *
-     * Result: `BookPackageResult <../models/response/BookPackageResult.rst>`_
+     * @P2R\Result("`BookPackageResult <../models/response/BookPackageResult.rst>`_")
      * @P2R\HttpMethod("POST")
      * @param int $appService
      * @param int $request

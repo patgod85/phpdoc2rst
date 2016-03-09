@@ -5,6 +5,7 @@ namespace Patgod85\Phpdoc2rst\Tests\Command;
 
 use Patgod85\Phpdoc2rst\Annotation\Exclude;
 use Patgod85\Phpdoc2rst\Annotation\HttpMethod;
+use Patgod85\Phpdoc2rst\Annotation\Result;
 use Patgod85\Phpdoc2rst\Command\ProcessCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -28,6 +29,7 @@ class ControllersTest extends CommandHelper
     {
         new Exclude();
         new HttpMethod();
+        new Result();
 
         $application = new Application();
         $application->add(new ProcessCommand());
