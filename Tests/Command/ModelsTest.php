@@ -9,6 +9,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class ControllersTest extends CommandHelper
 {
+
     public function testNameIsOutput()
     {
         $application = new Application();
@@ -19,20 +20,21 @@ class ControllersTest extends CommandHelper
         $command->setContainer($this->getContainer());
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
-            'namespace' => 'input\Controller',
-            'path' => self::INPUT_RELATIVE_PATH.'/Controllers',
-            '-o' => self::OUTPUT_RELATIVE_PATH.'/Controllers',
-            '--target' => 'methods',
+            'namespace' => 'input\Models',
+            'path' => self::INPUT_RELATIVE_PATH.'/Models',
+            '-o' => self::OUTPUT_RELATIVE_PATH.'/Models',
+            '--target' => 'properties',
+            '-x' => 'input\Models\Excluded',
         ));
 
         $inputPath = self::INPUT_RELATIVE_PATH;
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
-Processing code from namespace input\Controller
-Processing files from $inputPath/Controllers
-Outputting to {$outputPath}\Controllers
-Processing input\Controllers
+Processing code from namespace input\Models
+Processing files from $inputPath/Models
+Outputting to {$outputPath}\Models
+Processing input\Models
 
 eot;
 
@@ -43,16 +45,16 @@ eot;
         );
 
         $this->assertEquals(
-            file_get_contents($this->getExpectedPath().'/Controllers/TicketsController.rst'),
-            file_get_contents($this->getOutputPath().'/Controllers/TicketsController.rst'),
+            file_get_contents($this->getExpectedPath().'/Models/Person.rst'),
+            file_get_contents($this->getOutputPath().'/Models/Person.rst'),
             'Content of result file is unexpected'
         );
 
-
         $this->assertFalse(
-            file_exists($this->getOutputPath().'/Controllers/ExcludedController.rst'),
+            file_exists($this->getOutputPath().'/Models/Excluded.rst'),
             'File of ExcludedController found'
         );
+
     }
 
 }
