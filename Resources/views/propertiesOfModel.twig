@@ -1,6 +1,10 @@
 ====
 {{ class.getName() }}
 ====
+{% if class.getDescription %}
+
+    {{ class.getDescription }}
+{% endif %}
 
 {% for property in class.getProperties() %}
 #.  {{ property.getType()|raw }} **{{ property.getName() }}**{% if property.getDescription() %} {{ property.getDescription()|raw }}{% endif %};
