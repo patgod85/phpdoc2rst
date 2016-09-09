@@ -106,6 +106,6 @@ abstract class DefaultController
 
     protected function putToFile($fileName, $content)
     {
-        file_put_contents($this->outputFolder.DIRECTORY_SEPARATOR.$fileName, $content);
+        file_put_contents($this->outputFolder.DIRECTORY_SEPARATOR.$fileName, html_entity_decode($content, ENT_QUOTES));
     }
 }

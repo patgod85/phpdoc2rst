@@ -1,6 +1,6 @@
 {
     "name": "patgod85/phpdoc2rst",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "type": "symfony-bundle",
     "description": "PHPDoc to RST",
     "keywords": ["documentation", "phpdoc", "rst"],
