@@ -2,6 +2,7 @@
 
 namespace Patgod85\Phpdoc2rst\Tests\Command;
 
+use JMS\Serializer\Annotation\Groups;
 use Mockery as m;
 use Patgod85\Phpdoc2rst\Command\Process\Services\ErrorsProvider;
 use Patgod85\Phpdoc2rst\Service\TrainSystemConnector;
@@ -21,6 +22,7 @@ class CommandHelper extends \PHPUnit_Framework_TestCase
         new Exclude();
         new HttpMethod();
         new Result();
+        new Groups();
 
         $Directory = new \RecursiveDirectoryIterator($this->getOutputPath());
         $Iterator = new \RecursiveIteratorIterator($Directory);

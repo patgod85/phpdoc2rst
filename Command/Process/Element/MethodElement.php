@@ -10,6 +10,7 @@ use Patgod85\Phpdoc2rst\Command\Process\CommentParser;
 use TokenReflection\Exception\RuntimeException;
 use TokenReflection\IReflectionMethod;
 use TokenReflection\ReflectionParameter;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Method element
@@ -226,7 +227,7 @@ class MethodElement extends Element
     }
 
     /**
-     * @see \Phpdoc2rst\Element\Element::__toString()
+     * @see Element::__toString()
      */
     public function __toString()
     {

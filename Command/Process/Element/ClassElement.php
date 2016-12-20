@@ -24,13 +24,25 @@ class ClassElement extends Element
     /** @var array  */
     protected $doctrineAnnotations;
 
-    function __construct(IReflectionClass $reflection)
+    /** @var  array */
+    protected $requiredGroups;
+
+    function __construct(IReflectionClass $reflection, $groups)
     {
         parent::__construct($reflection);
 
         $reader = new AnnotationReader();
         $this->doctrineAnnotations = $reader->getClassAnnotations(new \ReflectionClass($this->reflection->getName()));
 
+        $this->requiredGroups = array_filter(
+            preg_split(
+                '/[,;]/',
+                preg_replace('/[\[\]\{\}]/', '', $groups)
+            ),
+            function($element){
+                return (bool)$element;
+            }
+        );
     }
 
     public function getPath()
@@ -64,7 +76,7 @@ class ClassElement extends Element
     }
 
     /**
-     * @see Patgod85\Phpdoc2rst\Command\Process\Element.Element::__toString()
+     * @see Element.Element::__toString()
      */
     public function __toString()
     {
@@ -132,6 +144,16 @@ class ClassElement extends Element
         $properties = array_filter(
             $properties,
             function (PropertyElement $property){
+                if($this->requiredGroups)
+                {
+                    if(!$property->getGroups())
+                    {
+                        return false;
+                    }
+
+                    return (bool)array_intersect($this->requiredGroups, $property->getGroups());
+                }
+
                 return !$property->isExcluded();
             }
         );
@@ -141,6 +163,7 @@ class ClassElement extends Element
 
     public function getMethods()
     {
+
         $methods = array_map(
             function ($v)
             {

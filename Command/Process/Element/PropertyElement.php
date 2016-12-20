@@ -2,9 +2,13 @@
 
 namespace Patgod85\Phpdoc2rst\Command\Process\Element;
 
+use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Inflector\Inflector;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\Groups;
 use Patgod85\Phpdoc2rst\Command\Process\CommentParser;
 use TokenReflection\IReflectionProperty;
+use TokenReflection\IReflection;
 
 /**
  * Property element
@@ -13,6 +17,23 @@ class PropertyElement extends Element
 {
     /** @var IReflectionProperty  */
     protected $reflection;
+
+    /** @var  bool */
+    private $isExcluded;
+
+    /** @var  array */
+    private $groups;
+
+    /**
+     * PropertyElement constructor.
+     */
+    public function __construct(IReflection $reflection)
+    {
+        parent::__construct($reflection);
+
+
+        $this->readAnnotations();
+    }
 
 
     public function getDescription()
@@ -70,17 +91,40 @@ class PropertyElement extends Element
 
     public function isExcluded()
     {
-        $serializer = $this->getParser()->getAnnotationsByName('Serializer');
+        return $this->isExcluded;
+    }
 
-        foreach($serializer as $annotation)
+    private function readAnnotations()
+    {
+        $reader = new AnnotationReader();
+
+        $doctrineAnnotations = $reader->getPropertyAnnotations(
+            new \ReflectionProperty(
+                $this->reflection->getDeclaringClassName(),
+                Inflector::camelize($this->getName())
+            )
+        );
+
+        $this->isExcluded = false;
+
+        foreach($doctrineAnnotations as $annotation)
         {
-            if(strpos($annotation, 'Exclude') !== false)
+            if($annotation instanceof Exclude)
             {
-                return true;
+                $this->isExcluded = true;
+            }
+            elseif($annotation instanceof Groups)
+            {
+                $this->groups = $annotation->groups;
             }
         }
 
         return false;
+    }
+
+    public function getGroups()
+    {
+        return $this->groups;
     }
 
     protected function getParser()

@@ -4,7 +4,6 @@ namespace Patgod85\Phpdoc2rst\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\ArrayInput;
-use TokenReflection\Broker;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -15,7 +14,7 @@ class AllCommand extends ContainerAwareCommand
     private $tasks;
 
     /**
-     * @see Symfony\Component\Console\Command.Command::configure()
+     * @see \Symfony\Component\Console\Command.Command::configure()
      */
     protected function configure()
     {
@@ -29,14 +28,14 @@ class AllCommand extends ContainerAwareCommand
     }
 
     /**
-     * @see Symfony\Component\Console\Command.Command::interact()
+     * @see \Symfony\Component\Console\Command.Command::interact()
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         $config = $this->getContainer()->getParameter('patgod85_phpdoc2rst.tasks');
 
         $tasks = [];
-//print_r($config);
+
         foreach($config as $taskName => $task)
         {
             if(!$input->getOption('task') || $input->getOption('task') == $taskName)
@@ -57,7 +56,7 @@ class AllCommand extends ContainerAwareCommand
     }
 
     /**
-     * @see Symfony\Component\Console\Command.Command::execute()
+     * @see \Symfony\Component\Console\Command.Command::execute()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

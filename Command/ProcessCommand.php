@@ -6,7 +6,6 @@ use Patgod85\Phpdoc2rst\Command\Process\Controllers\ProcessController;
 use Patgod85\Phpdoc2rst\Service\TrainSystemConnector;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Question\Question;
-use TokenReflection\Broker;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -16,7 +15,7 @@ use \InvalidArgumentException;
 class ProcessCommand extends ContainerAwareCommand
 {
     /**
-     * @see Symfony\Component\Console\Command.Command::configure()
+     * @see \Symfony\Component\Console\Command.Command::configure()
      */
     protected function configure()
     {
@@ -31,11 +30,12 @@ class ProcessCommand extends ContainerAwareCommand
                 new InputOption('title', 't', InputOption::VALUE_REQUIRED, 'An alternate title for the top level namespace', null),
                 new InputOption('exclude', 'x', InputOption::VALUE_REQUIRED, 'Semicolon separated namespaces to ignore', null),
                 new InputOption('target', '', InputOption::VALUE_REQUIRED, 'Which elements need to select', 'properties'),
+                new InputOption('groups', '', InputOption::VALUE_OPTIONAL, 'Groups policy', ''),
             ]);
     }
 
     /**
-     * @see Symfony\Component\Console\Command.Command::interact()
+     * @see \Symfony\Component\Console\Command.Command::interact()
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
@@ -122,7 +122,7 @@ class ProcessCommand extends ContainerAwareCommand
     }
 
     /**
-     * @see Symfony\Component\Console\Command.Command::execute()
+     * @see \Symfony\Component\Console\Command.Command::execute()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

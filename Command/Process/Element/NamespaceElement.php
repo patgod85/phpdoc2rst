@@ -42,12 +42,13 @@ class NamespaceElement extends Element
 
 
     /**
+     * @param $groups
      * @return ClassElement[]
      */
-    public function getClasses()
+    public function getClasses($groups)
     {
-        return array_map(function ($v) {
-            return new ClassElement($v);
+        return array_map(function ($v) use($groups) {
+            return new ClassElement($v, $groups);
         }, $this->reflection->getClasses());
     }
 
@@ -57,7 +58,7 @@ class NamespaceElement extends Element
     public function getExceptions()
     {
         return array_map(function ($v) {
-            return new ExceptionElement($v);
+            return new ExceptionElement($v, '');
         }, $this->reflection->getClasses());
     }
 
@@ -122,7 +123,7 @@ class NamespaceElement extends Element
 //        }
 //        else
 //        {
-            foreach ($this->getClasses() as $element)
+            foreach ($this->getClasses('') as $element)
             {
                 $element->build($target, $elementsForOutput);
             }

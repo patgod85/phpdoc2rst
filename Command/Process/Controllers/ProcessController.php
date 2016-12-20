@@ -33,7 +33,7 @@ class ProcessController extends DefaultController
 
     private function processClassMembers(NamespaceElement $namespace, $templateFileName)
     {
-        foreach ($namespace->getClasses() as $class)
+        foreach ($namespace->getClasses($this->groups) as $class)
         {
             if(!$class->isExcluded())
             {

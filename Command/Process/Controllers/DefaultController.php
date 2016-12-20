@@ -35,6 +35,9 @@ abstract class DefaultController
     /** @var  TrainSystemConnector */
     protected $trainSystemConnector;
 
+    /** @var array */
+    protected $groups;
+
     function __construct(InputInterface $input, OutputInterface $output, TrainSystemConnector $trainSystemConnector)
     {
         $this->output = $output;
@@ -44,6 +47,7 @@ abstract class DefaultController
         $this->outputFolder  = realpath($input->getOption('output'));
         $this->exclude = $input->getOption('exclude');
         $this->processingElements = $input->getOption('target');
+        $this->groups = $input->getOption('groups');
 
         $this->templateManager = new TemplateManager();
 

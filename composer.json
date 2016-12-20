@@ -1,6 +1,6 @@
 {
     "name": "patgod85/phpdoc2rst",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "type": "symfony-bundle",
     "description": "PHPDoc to RST",
     "keywords": ["documentation", "phpdoc", "rst"],
@@ -17,6 +17,7 @@
         "andrewsville/php-token-reflection": "dev-master",
         "doctrine/annotations": "*",
         "doctrine/inflector": "*",
+        "jms/serializer": "^1.4",
         "symfony/config": ">2.5",
         "symfony/console": ">=2.0.10",
         "symfony/framework-bundle": "*",
