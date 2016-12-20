@@ -7,7 +7,8 @@ For main API entities
 
 ![Preview](Resources/public/input.jpg)
 
-we can generate rst-files with data stored in PhpDoc annotations. Examples of results can be found [here](Resources/test/expected) .
+we can generate rst-files with data stored in PhpDoc annotations. 
+Examples of results can be found [here](Resources/test/expected) .
  
 The tool implemented as a bundle for Symfony 2 and provides 2 commands:
 
@@ -28,6 +29,8 @@ The command generates rst-files for specified target (Controllers, Models of Exc
 - --title, -t - An alternate title for the top level namespace;
 - --exclude, -x - Semicolon separated namespaces to ignore;
 - --target - Which elements need to select. Default value 'properties'.
+- --groups - Allows to fetch only properties of required group. 
+    A string divided by commas. Default value ''.
 
 ```shell
 php app/console phpdoc2rst:all
