@@ -51,5 +51,6 @@ patgod85_phpdoc2rst:
                     namespace: 'MyBundle\Model'
                     input: '%kernel.root_dir%/../src/MyBundle/Model'
                     output: '%kernel.root_dir%/../src/MyBundle/Resources/views/model'
+                    groups: Export,Create
 ```
  
