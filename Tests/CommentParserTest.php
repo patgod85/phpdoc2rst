@@ -6,7 +6,7 @@ class CommentParserTest extends Test
 {
     public function getClass()
     {
-        return 'Phpdoc2rst\CommentParser';
+        return 'Patgod85\Phpdoc2rst\Command\Process\CommentParser';
     }
 
     /**

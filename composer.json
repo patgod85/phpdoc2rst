@@ -12,20 +12,21 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=5.3.2",
         "andrewsville/php-token-reflection": "dev-master",
-        "doctrine/annotations": "*",
-        "doctrine/inflector": "*",
-        "jms/serializer": "^1.4",
-        "symfony/config": ">2.5",
-        "symfony/console": ">=2.0.10",
-        "symfony/framework-bundle": "*",
-        "symfony/http-kernel": ">2.5",
-        "symfony/dependency-injection": ">2.5",
-        "symfony/process": ">=2.0.10",
-        "twig/twig": "1.*"
+        "doctrine/annotations": "1.2.*",
+        "doctrine/inflector": "1.1.*",
+        "jms/serializer": "1.4.*",
+        "symfony/config": "3.2.*",
+        "symfony/console": "3.2.*",
+        "symfony/framework-bundle": "3.0.*",
+        "symfony/http-kernel": "3.2.*",
+        "symfony/dependency-injection": "3.0.*",
+        "symfony/process": "3.2.*",
+        "twig/twig": "1.*.*"
     },
     "autoload": {
         "psr-0": { "Patgod85\\Phpdoc2rst": "" }
@@ -35,7 +36,7 @@
     },
     "target-dir" : "Patgod85/Phpdoc2rst",
     "require-dev": {
-        "mockery/mockery": "^0.9.4",
-        "phpunit/phpunit": ">=1.6"
+        "mockery/mockery": "0.9.4",
+        "phpunit/phpunit": "4.8.*"
     }
 }
