@@ -81,6 +81,11 @@ class AllCommand extends ContainerAwareCommand
                 $arguments['-x'] = $taskParams['exclude'];
             }
 
+            if(isset($taskParams['groups']))
+            {
+                $arguments['--groups'] = $taskParams['groups'];
+            }
+
             $input = new ArrayInput($arguments);
             $returnCode = $command->run($input, $output);
 
