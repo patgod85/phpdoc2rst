@@ -39,7 +39,10 @@ class ProcessController extends DefaultController
             {
                 $template = $this->templateManager->render(
                     $templateFileName,
-                    ['class' => $class]
+                    [
+                        'class' => $class,
+                        'header' => $this->header
+                    ]
                 );
 
                 $this->putToFile($class->getName() . '.rst', $template);

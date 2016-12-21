@@ -38,6 +38,9 @@ abstract class DefaultController
     /** @var array */
     protected $groups;
 
+    /** @var string */
+    protected $header;
+
     function __construct(InputInterface $input, OutputInterface $output, TrainSystemConnector $trainSystemConnector)
     {
         $this->output = $output;
@@ -48,6 +51,7 @@ abstract class DefaultController
         $this->exclude = $input->getOption('exclude');
         $this->processingElements = $input->getOption('target');
         $this->groups = $input->getOption('groups');
+        $this->header = $input->getOption('header');
 
         $this->templateManager = new TemplateManager();
 

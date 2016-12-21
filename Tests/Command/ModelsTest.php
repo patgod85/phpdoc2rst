@@ -40,7 +40,7 @@ eot;
 
         $this->assertEquals(
             $expected,
-            $commandTester->getDisplay(),
+            preg_replace('/.\[3\dm/', '', $commandTester->getDisplay()),
             'Output of command in unexpected'
         );
 
@@ -88,7 +88,7 @@ eot;
 
         $this->assertEquals(
             $expected,
-            $commandTester->getDisplay(),
+            preg_replace('/.\[3\dm/', '', $commandTester->getDisplay()),
             'Output of command in unexpected'
         );
 
@@ -101,6 +101,49 @@ eot;
         $this->assertFalse(
             file_exists($this->getOutputPath().'/Models/Excluded.rst'),
             'File of ExcludedController found'
+        );
+
+    }
+
+    public function testHeader()
+    {
+        $application = new Application();
+        $application->add(new ProcessCommand());
+
+        $command = $application->find('phpdoc2rst:process');
+        /** @noinspection PhpUndefinedMethodInspection */
+        $command->setContainer($this->getContainer());
+        $commandTester = new CommandTester($command);
+        $commandTester->execute(array(
+            'namespace' => 'input\Models',
+            'path' => self::INPUT_RELATIVE_PATH.'/Models',
+            '-o' => self::OUTPUT_RELATIVE_PATH.'/Models',
+            '--target' => 'properties',
+            '-x' => 'input\Models\Excluded',
+            '--header' => 'h2',
+        ));
+
+        $inputPath = self::INPUT_RELATIVE_PATH;
+        $outputPath = realpath($this->getOutputPath());
+
+        $expected = <<<eot
+Processing code from namespace input\Models
+Processing files from $inputPath/Models
+Outputting to {$outputPath}\Models
+Processing input\Models
+
+eot;
+
+        $this->assertEquals(
+            $expected,
+            preg_replace('/.\[3\dm/', '', $commandTester->getDisplay()),
+            'Output of command in unexpected'
+        );
+
+        $this->assertEquals(
+            file_get_contents($this->getExpectedPath().'/Models/Owner.rst'),
+            file_get_contents($this->getOutputPath().'/Models/Owner.rst'),
+            'Content of Owner.rst file is unexpected'
         );
 
     }

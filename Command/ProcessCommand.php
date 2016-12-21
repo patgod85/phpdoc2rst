@@ -31,6 +31,7 @@ class ProcessCommand extends ContainerAwareCommand
                 new InputOption('exclude', 'x', InputOption::VALUE_REQUIRED, 'Semicolon separated namespaces to ignore', null),
                 new InputOption('target', '', InputOption::VALUE_REQUIRED, 'Which elements need to select', 'properties'),
                 new InputOption('groups', '', InputOption::VALUE_OPTIONAL, 'Groups policy', ''),
+                new InputOption('header', '', InputOption::VALUE_OPTIONAL, 'Set the weight of main header for target==properties. Available options "h1" and "h2". Default value is "h1"', 'h1'),
             ]);
     }
 

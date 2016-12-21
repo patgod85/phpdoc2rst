@@ -1,6 +1,9 @@
-====
+{% if header == 'h1' %}====
+{% endif %}
 {{ class.getName() }}
-====
+{% if header == 'h1' %}====
+{% else %}----
+{% endif %}
 {% if class.getDescription %}
 
     {{ class.getDescription }}

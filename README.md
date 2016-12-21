@@ -28,9 +28,11 @@ The command generates rst-files for specified target (Controllers, Models of Exc
 - --output, -o - The path to output the ReST files;
 - --title, -t - An alternate title for the top level namespace;
 - --exclude, -x - Semicolon separated namespaces to ignore;
-- --target - Which elements need to select. Default value 'properties'.
-- --groups - Allows to fetch only properties of required group. 
-    A string divided by commas. Default value ''.
+- --target - Which elements need to select. Default value 'properties';
+- --groups - Allows to fetch only properties of required group.
+    A string divided by commas. Default value '';
+- --header - Set the weight of main header for target==properties. 
+    Available options "h1" and "h2". Default value is "h1" 
 
 ```shell
 php app/console phpdoc2rst:all
@@ -52,5 +54,6 @@ patgod85_phpdoc2rst:
                     input: '%kernel.root_dir%/../src/MyBundle/Model'
                     output: '%kernel.root_dir%/../src/MyBundle/Resources/views/model'
                     groups: Export,Create
+                    header: h2
 ```
  

@@ -86,6 +86,11 @@ class AllCommand extends ContainerAwareCommand
                 $arguments['--groups'] = $taskParams['groups'];
             }
 
+            if(isset($taskParams['header']))
+            {
+                $arguments['--header'] = $taskParams['header'];
+            }
+
             $input = new ArrayInput($arguments);
             $returnCode = $command->run($input, $output);
 
