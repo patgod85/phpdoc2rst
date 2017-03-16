@@ -71,4 +71,14 @@ class Order
     {
         return $this->innerData2 . '456';
     }
+
+    /**
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("innerData5")
+     * @return mixed
+     */
+    public function getInnerData5()
+    {
+        return $this->innerData2 . '678';
+    }
 }

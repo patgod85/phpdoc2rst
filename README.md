@@ -1,7 +1,7 @@
 Phpdoc2rst
 ---
 
-The tool for building of documentation of shared API in reStructuredText format.
+The tool for building of documentation for shared API in reStructuredText format
 
 For main API entities 
 
@@ -10,6 +10,12 @@ For main API entities
 we can generate rst-files with data stored in PhpDoc annotations. 
 Examples of results can be found [here](Resources/test/expected) .
  
+Installation:
+
+```shell
+composer require patgod85/phpdoc2rst
+```
+
 The tool implemented as a bundle for Symfony 2 and provides 2 commands:
 
 ```shell
@@ -58,3 +64,10 @@ patgod85_phpdoc2rst:
 ```
  
 For "properties" mode the annotation ```JMS\Serializer\Annotation\VirtualProperty``` should be counted
+
+##To update the bundle:
+
+1. Commit the changes
+1. Add a tag with version number
+1. Push
+1. Run ```composer require patgod85/phpdoc2rst:0.0.17``` in the customer project
