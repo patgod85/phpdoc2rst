@@ -158,7 +158,10 @@ class ClassElement extends Element
             }
         );
 
-        return $properties;
+        return array_merge(
+            $properties,
+            $this->getVirtualProperties()
+        );
     }
 
     public function getMethods()
@@ -178,6 +181,28 @@ class ClassElement extends Element
                 return !$element->isExcluded();
             }
         );
+    }
+
+    public function getVirtualProperties()
+    {
+
+        $methods = array_map(
+            function ($v)
+            {
+                return new MethodElement($v);
+            },
+            $this->reflection->getOwnMethods()
+        );
+
+        $array_filter = array_filter(
+            $methods,
+            function (MethodElement $element)
+            {
+                return !$element->isExcluded() && $element->isVirtualProperty();
+            }
+        );
+
+        return $array_filter;
     }
 
     public function getNamespaceElement()

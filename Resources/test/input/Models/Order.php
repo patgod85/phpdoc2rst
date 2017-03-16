@@ -50,5 +50,25 @@ class Order
         return $this->innerData2;
     }
 
+    /**
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("innerData3")
+     * @Serializer\Groups({"Export"})
+     * @return mixed
+     */
+    public function getInnerData3()
+    {
+        return $this->innerData2 . '123';
+    }
 
+
+    /**
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("innerData4")
+     * @P2R\Exclude
+     */
+    public function getInnerData4()
+    {
+        return $this->innerData2 . '456';
+    }
 }

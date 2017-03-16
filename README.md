@@ -57,3 +57,4 @@ patgod85_phpdoc2rst:
                     header: h2
 ```
  
+For "properties" mode the annotation ```JMS\Serializer\Annotation\VirtualProperty``` should be counted

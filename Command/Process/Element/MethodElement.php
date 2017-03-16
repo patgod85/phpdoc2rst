@@ -11,6 +11,7 @@ use TokenReflection\Exception\RuntimeException;
 use TokenReflection\IReflectionMethod;
 use TokenReflection\ReflectionParameter;
 use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Method element
@@ -28,6 +29,9 @@ class MethodElement extends Element
     protected $doctrineAnnotations;
 
     private $isExcluded = false;
+
+    /** @var  boolean */
+    private $isVirtualProperty = false;
 
     /**
      * @var string
@@ -50,6 +54,11 @@ class MethodElement extends Element
         list($this->name, $this->httpMethod) = $this->processMethodName($methodName);
 
         $this->processAnnotations();
+    }
+
+    public function isVirtualProperty()
+    {
+        return $this->isVirtualProperty;
     }
 
     /**
@@ -188,13 +197,14 @@ class MethodElement extends Element
             $type = array_slice($parts, 1, 1);
             $type = $type[0];
 
-            $comment = implode(' ', array_slice($parts, 2));
+//            $comment = implode(' ', array_slice($parts, 2));
 
-            return sprintf(
-                ':returns: %s%s',
-                $type ?: 'unknown',
-                $comment ? ' ' . $comment : ''
-            );
+            return $type;
+//            return sprintf(
+//                ':returns: %s%s',
+//                $type ?: 'unknown',
+//                $comment ? ' ' . $comment : ''
+//            );
         }
 
         return false;
@@ -281,6 +291,16 @@ class MethodElement extends Element
     {
         foreach($this->doctrineAnnotations as $a)
         {
+            if($a instanceof VirtualProperty)
+            {
+                $this->isVirtualProperty = true;
+            }
+
+            if($a instanceof Serializer\SerializedName)
+            {
+                $this->name = $a->name;
+            }
+
             if($a instanceof Exclude)
             {
                 $this->isExcluded = true;
@@ -290,6 +310,11 @@ class MethodElement extends Element
                 $this->result = $a->value;
             }
         }
+    }
+
+    public function getType()
+    {
+        return $this->getReturnValue();
     }
 
     protected function getParser()

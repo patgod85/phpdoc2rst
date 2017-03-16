@@ -3,6 +3,8 @@
 namespace Patgod85\Phpdoc2rst\Tests\Command;
 
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 use Mockery as m;
 use Patgod85\Phpdoc2rst\Command\Process\Services\ErrorsProvider;
 use Patgod85\Phpdoc2rst\Service\TrainSystemConnector;
@@ -23,6 +25,8 @@ class CommandHelper extends \PHPUnit_Framework_TestCase
         new HttpMethod();
         new Result();
         new Groups();
+        new VirtualProperty();
+        new SerializedName(['value' => 'initialization']);
 
         $Directory = new \RecursiveDirectoryIterator($this->getOutputPath());
         $Iterator = new \RecursiveIteratorIterator($Directory);
@@ -68,5 +72,10 @@ class CommandHelper extends \PHPUnit_Framework_TestCase
     protected function getExpectedPath()
     {
         return __DIR__.'/'.self::EXPECTED_RELATIVE_PATH;
+    }
+
+    protected function stripOutput($output)
+    {
+        return preg_replace("/\033[33m/", '', $output);
     }
 }
