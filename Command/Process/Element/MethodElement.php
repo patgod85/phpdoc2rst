@@ -33,6 +33,9 @@ class MethodElement extends Element
     /** @var  boolean */
     private $isVirtualProperty = false;
 
+    /** @var  array */
+    private $groups = [];
+
     /**
      * @var string
      */
@@ -296,6 +299,11 @@ class MethodElement extends Element
                 $this->isVirtualProperty = true;
             }
 
+            if($a instanceof Serializer\Groups)
+            {
+                $this->groups = $a->groups;
+            }
+
             if($a instanceof Serializer\SerializedName)
             {
                 $this->name = $a->name;
@@ -320,5 +328,13 @@ class MethodElement extends Element
     protected function getParser()
     {
         return new CommentParser($this->reflection->getDocComment());
+    }
+
+    /**
+     * @return array
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

@@ -198,7 +198,7 @@ class ClassElement extends Element
             $methods,
             function (MethodElement $element)
             {
-                return !$element->isExcluded() && $element->isVirtualProperty();
+                return !$element->isExcluded() && $element->isVirtualProperty() && (bool)array_intersect($this->requiredGroups, $element->getGroups());
             }
         );
 
