@@ -30,10 +30,10 @@ class ExceptionsTest extends CommandHelper
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
-\033[33mProcessing code from namespace input\Exceptions\033[39m
-\033[33mProcessing files from $inputPath/Exceptions\033[39m
-\033[33mOutputting to {$outputPath}\Exceptions\033[39m
-\033[32mProcessing input\Exceptions\033[39m
+Processing code from namespace input\Exceptions
+Processing files from $inputPath/Exceptions
+Outputting to {$outputPath}\Exceptions
+Processing input\Exceptions
 
 eot;
 

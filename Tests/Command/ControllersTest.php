@@ -29,10 +29,10 @@ class ControllersTest extends CommandHelper
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
-\033[33mProcessing code from namespace input\Controller\033[39m
-\033[33mProcessing files from $inputPath/Controllers\033[39m
-\033[33mOutputting to {$outputPath}\Controllers\033[39m
-\033[32mProcessing input\Controllers\033[39m
+Processing code from namespace input\Controller
+Processing files from $inputPath/Controllers
+Outputting to {$outputPath}\Controllers
+Processing input\Controllers
 
 eot;
 
