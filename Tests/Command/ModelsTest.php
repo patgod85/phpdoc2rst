@@ -21,13 +21,13 @@ class ModelsTest extends CommandHelper
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'namespace' => 'input\Models',
-            'path' => self::INPUT_RELATIVE_PATH.'/Models',
-            '-o' => self::OUTPUT_RELATIVE_PATH.'/Models',
+            'path' => $this->getInputPath().'/Models',
+            '-o' => $this->getOutputPath().'/Models',
             '--target' => 'properties',
             '-x' => 'input\Models\Excluded',
         ));
 
-        $inputPath = self::INPUT_RELATIVE_PATH;
+        $inputPath = $this->getInputPath();
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
@@ -45,8 +45,8 @@ eot;
         );
 
         $this->assertEquals(
-            file_get_contents($this->getExpectedPath().'/Models/Person.rst'),
-            file_get_contents($this->getOutputPath().'/Models/Person.rst'),
+            $this->replaceBreakLines(file_get_contents($this->getExpectedPath().'/Models/Person.rst')),
+            $this->replaceBreakLines(file_get_contents($this->getOutputPath().'/Models/Person.rst')),
             'Content of Person.rst file is unexpected'
         );
 
@@ -68,14 +68,14 @@ eot;
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'namespace' => 'input\Models',
-            'path' => self::INPUT_RELATIVE_PATH.'/Models',
-            '-o' => self::OUTPUT_RELATIVE_PATH.'/Models',
+            'path' => $this->getInputPath().'/Models',
+            '-o' => $this->getOutputPath().'/Models',
             '--target' => 'properties',
             '-x' => 'input\Models\Excluded',
             '--groups' => '[Export,Json]',
         ));
 
-        $inputPath = self::INPUT_RELATIVE_PATH;
+        $inputPath = $this->getInputPath();
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
@@ -93,8 +93,8 @@ eot;
         );
 
         $this->assertEquals(
-            file_get_contents($this->getExpectedPath().'/Models/Order.rst'),
-            file_get_contents($this->getOutputPath().'/Models/Order.rst'),
+            $this->replaceBreakLines(file_get_contents($this->getExpectedPath().'/Models/Order.rst')),
+            $this->replaceBreakLines(file_get_contents($this->getOutputPath().'/Models/Order.rst')),
             'Content of Order.rst file is unexpected'
         );
 
@@ -116,14 +116,14 @@ eot;
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'namespace' => 'input\Models',
-            'path' => self::INPUT_RELATIVE_PATH.'/Models',
-            '-o' => self::OUTPUT_RELATIVE_PATH.'/Models',
+            'path' => $this->getInputPath().'/Models',
+            '-o' => $this->getOutputPath().'/Models',
             '--target' => 'properties',
             '-x' => 'input\Models\Excluded',
             '--header' => 'h2',
         ));
 
-        $inputPath = self::INPUT_RELATIVE_PATH;
+        $inputPath = $this->getInputPath();
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
@@ -141,8 +141,8 @@ eot;
         );
 
         $this->assertEquals(
-            file_get_contents($this->getExpectedPath().'/Models/Owner.rst'),
-            file_get_contents($this->getOutputPath().'/Models/Owner.rst'),
+            $this->replaceBreakLines(file_get_contents($this->getExpectedPath().'/Models/Owner.rst')),
+            $this->replaceBreakLines(file_get_contents($this->getOutputPath().'/Models/Owner.rst')),
             'Content of Owner.rst file is unexpected'
         );
 

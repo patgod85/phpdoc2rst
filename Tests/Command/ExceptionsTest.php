@@ -21,12 +21,12 @@ class ExceptionsTest extends CommandHelper
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'namespace' => 'input\Exceptions',
-            'path' => self::INPUT_RELATIVE_PATH.'/Exceptions',
-            '-o' => self::OUTPUT_RELATIVE_PATH.'/Exceptions',
+            'path' => $this->getInputPath().'/Exceptions',
+            '-o' => $this->getOutputPath().'/Exceptions',
             '--target' => 'exceptions',
         ));
 
-        $inputPath = self::INPUT_RELATIVE_PATH;
+        $inputPath = $this->getInputPath();
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
@@ -43,9 +43,12 @@ eot;
             'Output of command in unexpected'
         );
 
+		$expected = $this->replaceBreakLines(file_get_contents($this->getExpectedPath().'/Exceptions/errors.rst'));
+		$actual = $this->replaceBreakLines(file_get_contents($this->getOutputPath().'/Exceptions/errors.rst'));
+
         $this->assertEquals(
-            file_get_contents($this->getExpectedPath().'/Exceptions/errors.rst'),
-            file_get_contents($this->getOutputPath().'/Exceptions/errors.rst'),
+			$expected,
+			$actual,
             'Content of result file is unexpected'
         );
 
