@@ -20,12 +20,12 @@ class ControllersTest extends CommandHelper
         $commandTester = new CommandTester($command);
         $commandTester->execute(array(
             'namespace' => 'input\Controller',
-            'path' => self::INPUT_RELATIVE_PATH.'/Controllers',
-            '-o' => self::OUTPUT_RELATIVE_PATH.'/Controllers',
+            'path' => $this->getInputPath().'/Controllers',
+            '-o' => $this->getOutputPath().'/Controllers',
             '--target' => 'methods',
         ));
 
-        $inputPath = self::INPUT_RELATIVE_PATH;
+        $inputPath = $this->getInputPath();
         $outputPath = realpath($this->getOutputPath());
 
         $expected = <<<eot
@@ -42,9 +42,12 @@ eot;
             'Output of command in unexpected'
         );
 
+		$expected = $this->replaceBreakLines(file_get_contents($this->getExpectedPath().'/Controllers/TicketsController.rst'));
+		$actual = $this->replaceBreakLines(file_get_contents($this->getOutputPath().'/Controllers/TicketsController.rst'));
+
         $this->assertEquals(
-            file_get_contents($this->getExpectedPath().'/Controllers/TicketsController.rst'),
-            file_get_contents($this->getOutputPath().'/Controllers/TicketsController.rst'),
+            $expected,
+            $actual,
             'Content of result file is unexpected'
         );
 

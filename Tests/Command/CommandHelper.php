@@ -8,12 +8,13 @@ use JMS\Serializer\Annotation\SerializedName;
 use Mockery as m;
 use Patgod85\Phpdoc2rst\Command\Process\Services\ErrorsProvider;
 use Patgod85\Phpdoc2rst\Service\TrainSystemConnector;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
 use Patgod85\Phpdoc2rst\Annotation\Exclude;
 use Patgod85\Phpdoc2rst\Annotation\HttpMethod;
 use Patgod85\Phpdoc2rst\Annotation\Result;
 
-class CommandHelper extends \PHPUnit_Framework_TestCase
+class CommandHelper extends TestCase
 {
     const INPUT_RELATIVE_PATH = '../../Resources/test/input';
     const OUTPUT_RELATIVE_PATH = '../../Resources/test/output';
@@ -78,4 +79,9 @@ class CommandHelper extends \PHPUnit_Framework_TestCase
     {
         return preg_replace("/\033[33m/", '', $output);
     }
+
+    protected function replaceBreakLines($output)
+	{
+		return str_replace(array("\r\n", "\n", "\r"), '<br/>', $output);
+	}
 }
